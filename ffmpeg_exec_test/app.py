@@ -17,7 +17,7 @@ def gen():
    """Video streaming generator function."""
    x = 0
    while x < 7:
-      cap = cv2.VideoCapture('/var/media/_480p/hls_outputs_480p_000' + str(x) + '.ts')
+      cap = cv2.VideoCapture('video_fragments/hls_outputs_480p_000' + str(x) + '.ts')
       x = x + 1
 
       # Read until video is completed
@@ -39,4 +39,4 @@ def video_feed():
                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-   app.run(host = "0.0.0.0", port = '5000')
+   app.run(host = "0.0.0.0", port = '5014')
