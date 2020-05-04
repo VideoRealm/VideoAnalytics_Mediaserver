@@ -26,7 +26,7 @@ Mediaserver instance template code for a [ultimately censored] app - just anothe
 <p align="center">
  <img src="https://user-images.githubusercontent.com/55311053/80946282-f7a87780-8ded-11ea-9d7c-c387ed914283.jpg" />
 </p>  
-<br/><br/>
+<br/>
 
 Рис. 3. Схема определения программных интерфейсов.<br/>
 <p align="center">
@@ -51,7 +51,7 @@ Mediaserver instance template code for a [ultimately censored] app - just anothe
   <li>Язык разработки: Python 3.7</li>
   <li>Фреймворк адаптированной веб-разработки: Flask 1.1.2</li>
 </ul>  
-<br/>
+
 Факторы оптимальности текущей структуры стека:<br/>
 <ul>  
   <li>удобство, доступность представления справочной информации и высокая скорость разработки на Python;</li> 
