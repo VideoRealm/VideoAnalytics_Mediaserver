@@ -81,12 +81,12 @@ definitions:
       timeFinish:
         type: string
         format: date-time
-  Pair1:
+  Pair2:
     properties:
       cameraId:
         type: integer
         format: int64
-      serverId:
+      recordId:
         type: integer
         format: int64
   Map2:
@@ -237,4 +237,3 @@ paths:
           description: request failure
           schema:
             $ref: '#/definitions/Fail'
-  
