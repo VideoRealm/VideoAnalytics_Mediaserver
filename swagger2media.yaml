@@ -1,0 +1,239 @@
+swagger: '2.0'
+info:
+  version: -2.0
+  title: video surveillance `as-if-truth` API (#foolish|rubbish|unlimited)
+host: api.pettystreamer.org
+schemes:
+  - https
+definitions:
+  Server:
+    type: object
+    required:
+      - id
+      - networkAddress
+      - productName
+      - vendor
+    properties:
+      id:
+        type: integer
+        format: int64
+      networkAddress:
+        type: string
+      productName:
+        type: string
+      vendor:
+        type: string
+  Camera:
+    type: object
+    required:
+      - id
+      - networkAddress
+      - location
+      - serverRelId
+      - productName
+      - vendor
+    properties:
+      id:
+        type: integer
+        format: int64
+      networkAddress:
+        type: string
+      location:
+        type: string
+      serverRelId:
+        type: integer
+        format: int64
+      productName:
+        type: string
+      vendor:
+        type: string
+  Record:
+    type: object
+    required:
+      - id
+      - cameraRelId
+      - fileName
+      - fileExtension
+      - fileSize
+      - duration
+      - timeStart
+      - timeFinish
+    properties:
+      id:
+        type: integer
+        format: int64
+      cameraRelId:
+        type: integer
+        format: int64
+      fileName:
+        type: string
+      fileExtension:
+        type: string
+      fileSize:
+        type: integer
+        format: int32
+      duration:
+        type: string
+        format: date-time
+      timeStart:
+        type: string
+        format: date-time
+      timeFinish:
+        type: string
+        format: date-time
+  Pair2:
+    properties:
+      cameraId:
+        type: integer
+        format: int64
+      recordId:
+        type: integer
+        format: int64
+  Map2:
+    description: camera-record associative map
+    properties:
+      default:
+        $ref: '#/definitions/Pair2'
+  FileExtension:
+    type: string
+    enum: [AVI, FLV, MP4, MPEG, WMV]
+  Fail:
+    type: object
+    required:
+      - errorCode
+      - message
+    properties:
+      errorCode:
+        type: integer
+        format: int64
+      message:
+        type: string
+tags:
+  - name: server
+  - name: camera
+  - name: record
+  - name: mediaserver
+basePath: /
+paths:
+  /findRecordById/{recordId}:
+    get:
+      description: pull out a record by origin camera id
+      tags:
+        - mediaserver
+      parameters:
+        - name: recordId
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: record item provided
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Record'
+        default:
+          description: request failure
+          schema:
+            $ref: '#/definitions/Fail'
+  /findRecordsByCamId/{cameraId}:
+    get:
+      description: extract entire lot of records by origin camera id
+      tags:
+        - mediaserver
+      parameters:
+        - name: cameraId
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: set of record items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Record'
+        default:
+          description: request failure
+          schema:
+            $ref: '#/definitions/Fail'
+  /findRecordsByInterval:
+    get:
+      description: extract all camera-specific records that cover time period within an interval given
+      tags:
+        - mediaserver
+      parameters:
+        - name: cameraId
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: beginInterval
+          in: path
+          required: true
+          type: string
+          format: date-time
+        - name: endInterval
+          in: path
+          required: true
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: set of record items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Record'
+        default:
+          description: request failure
+          schema:
+            $ref: '#/definitions/Fail'
+  /requestServerAssigned:
+    get:
+      description: sending request for dispatcher-resolvable target server ID
+      tags:
+        - mediaserver
+      parameters:
+        - name: cameraId
+            in: path
+            required: true
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: server ID resolved
+          schema:
+            type: integer
+            format: int64
+          default:
+            description: request failure
+            schema:
+              $ref: '#/definitions/Fail'
+  /requestStreaming:
+    get:
+      description: sending request for stream cast by a server specified
+      tags:
+        - mediaserver
+      parameters:
+        - name: serverId
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: cameraId
+            in: path
+            required: true
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: streaming in progress
+          schema:
+            type: object
+        default:
+          description: request failure
+          schema:
+            $ref: '#/definitions/Fail'

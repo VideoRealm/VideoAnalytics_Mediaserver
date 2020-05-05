@@ -23,11 +23,16 @@ Mediaserver instance template code for a [ultimately censored] app - just anothe
 </ol>  
 
 Рис. 2. Схема определения базовых классов (not match, but tribute to UML class diagram).<br/>
-![allegedClasses (2)](https://user-images.githubusercontent.com/55311053/80410118-58a1ee00-88ca-11ea-870e-07491dda0dd3.jpg)
-<br/><br/>
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/55311053/80946282-f7a87780-8ded-11ea-9d7c-c387ed914283.jpg" />
+</p>  
+<br/>
 
 Рис. 3. Схема определения программных интерфейсов.<br/>
-![controller_db](https://user-images.githubusercontent.com/55311053/80387445-f1277680-88a8-11ea-8e96-ada1f01def62.jpg)
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/55311053/80946323-1444af80-8dee-11ea-8e29-5bffa729b1ec.jpg" />
+</p>  
+<br/>
 
 Таблица 1. Состав и назначение функций API контроллера.
 | Функция | Назначение|
@@ -45,17 +50,11 @@ Mediaserver instance template code for a [ultimately censored] app - just anothe
 <ul>
   <li>Язык разработки: Python 3.7</li>
   <li>Фреймворк адаптированной веб-разработки: Flask 1.1.2</li>
-  <li>Библиотека функций обработки и анализа видео: OpenCV 3</li>
-  <li>СУБД: PostgreSQL 12</li>
 </ul>  
-<br/>
+
 Факторы оптимальности текущей структуры стека:<br/>
-<ul>
-  <li>универсальная модульная поддержка элементов OpenCV в Python/Flask;</li>
-  <li>минимальные временные издержки для настройки OpenCV в Python/Flask;</li> 
+<ul>  
   <li>удобство, доступность представления справочной информации и высокая скорость разработки на Python;</li> 
   <li>практичность структуры проекта и высокая динамика развёртывания сервисов веб-приложений в Flask;</li>
-  <li>широкий набор тематически идентичных проектов на Python для форсированного освоения актуальных технологий;</li>
-  <li>высокая производительность обработки SQL-запросов в PostgreSQL, в т.ч. в условиях интенсивного конкурентного проведения CRUD-транзакций;</li> 
-  <li>практичность и гибкость конфигурирования БД в PostgreSQL (особо отмечаются визуальное и утилитарное исполнение интерфейса администрирования pgAdmin).</li>
+  <li>широкий набор тематически идентичных проектов на Python для форсированного освоения актуальных технологий.</li>
 </ul>  
