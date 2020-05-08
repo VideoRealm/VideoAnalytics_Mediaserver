@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Monitor - TestCast</title>
+    <link rel="stylesheet" href="/static/css/core.css">
+    <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+</head>
+<body>
+     <video id='hls-example' class="video-js vjs-default-skin" width="400" height="300" controls>
+            <source type="application/x-mpegURL" src="http://localhost:5000/video_fragments/hls_outputs.m3u8">
+        <!--
+<source type="application/x-mpegURL" src="http://ip-address/path/to/ouput/file-name.m3u8">
+-->
+    </video>
+
+    <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+    <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+
+    <script>
+        var player = videojs('hls-example');
+        player.play();
+    </script>
+
+<!--<div align="center">
+        <div style="width: 90%; font-family: Roboto">
+            <h3>I heard you like spying - I gonna help</h3>
+        </div>
+   </div>
+   <div align="center">
+        <img src="{{ url_for('video_feed') }}">
+   </div>-->
+
+</body>
+</html>

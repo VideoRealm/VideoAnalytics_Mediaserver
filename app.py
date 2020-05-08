@@ -20,33 +20,34 @@ def index():
 
 def gen():
 
-   #image = ffmpeg.get_image()
    """Video streaming generator function."""
    #while True:
 
    #Failed option 1
    cap = ffmpeg.input('video_fragments/hls_outputs_480p_0000.ts')
    cap = ffmpeg.filter(cap, 'scale', 500, 500)
-   ffmpeg.run(cap)
+   #ffmpeg.run(cap)
 
    #Failed option 2
-   cap = acapture.open('video_fragments/hls_outputs_480p_0000.ts')
+  # cap = acapture.open('video_fragments/hls_outputs_480p_0000.ts')
 
    while True:
       # Capture frame-by-frame
-      check, frame = cap.read()
-      if check == True:
-         img = cv2.resize(img, (0,0), fx=1.5, fy=1.5)
+      ret, img = cap.read()
+      if ret == True:
+         #img = cv2.resize(img, (0,0), fx=1.5, fy=1.5)
+         #img = ffmpeg.filter(img, 'scale', 500, 500)
          frame = cv2.imencode('.jpg', img)[1].tobytes()
          yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
          time.sleep(0.1)
       else:
          break
 
+
    #Failed option 3
-   pygame.init()
-   video = pygame.movie.Movie('video_fragments/hls_outputs_480p_0000.ts')
-   video.play()
+   #pygame.init()
+   #video = pygame.movie.Movie('127video_fragments/hls_outputs_480p_0000.ts')
+   #video.play()
 
 
 
@@ -57,4 +58,4 @@ def video_feed():
                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-   app.run(host = "0.0.0.0", port = '5038')
+   app.run(host = "0.0.0.0", port = '5000')
